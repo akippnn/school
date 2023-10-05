@@ -1,8 +1,0 @@
-/home/aki/Projects/cpe211/bin/CMakeFiles/act41.dir
-/home/aki/Projects/cpe211/bin/CMakeFiles/act42.dir
-/home/aki/Projects/cpe211/bin/CMakeFiles/act51.dir
-/home/aki/Projects/cpe211/bin/CMakeFiles/act52.dir
-/home/aki/Projects/cpe211/bin/CMakeFiles/act61.dir
-/home/aki/Projects/cpe211/bin/CMakeFiles/act62.dir
-/home/aki/Projects/cpe211/bin/CMakeFiles/edit_cache.dir
-/home/aki/Projects/cpe211/bin/CMakeFiles/rebuild_cache.dir

@@ -1,12 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <ncurses.h>
+#include <curses.h>
 #include <thread>
 #include <ctime>
 
 using namespace std;
 
-// Function to animate bubble sort for multichars and display the process
 void animateBubbleSort(vector<string>& arr) {
     int n = arr.size();
     for (int i = 0; i < n - 1; i++) {
@@ -36,12 +35,10 @@ void animateBubbleSort(vector<string>& arr) {
 }
 
 int main() {
-    // Initialize Ncurses
     initscr();
-    curs_set(FALSE);
 
     // Input five multichars
-    mvprintw(0, 0, "%s", "Bubble sort visualization using ncurses.");
+    mvprintw(0, 0, "%s", "Bubble sort visualization using curses.");
     mvprintw(1, 0, "%s", "Animates the bubble sort process by underlining the multichar string being compared, and swapping them based on their order.");
     vector<string> multichars;
     for (int i = 0; i < 5; i++) {
@@ -52,7 +49,6 @@ int main() {
         multichars.push_back(input);
     }
 
-    // Sort the multichars using bubble sort and animate it
     mvprintw(9, 0, "Sorting multichars (slowed down to 200ms per execution):");
     animateBubbleSort(multichars);
     refresh();

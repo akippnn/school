@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <ncurses.h>
+#include <curses.h>
 #include <thread>
 #include <ctime>
 #include <algorithm>
@@ -32,7 +32,7 @@ void animateInsertionSort(int y, int x, int sleep, std::vector<std::string>& arr
                 }
                 move(y + k, x);
                 clrtoeol();
-                printw("%s", arr[k].c_str()); // Display multichars
+                printw("%s", arr[k].c_str());
                 attroff(A_UNDERLINE);
             }
             refresh();
@@ -50,17 +50,15 @@ void animateInsertionSort(int y, int x, int sleep, std::vector<std::string>& arr
 }
 
 int main() {
-    // Initialize Ncurses
     initscr();
-    curs_set(FALSE);
 
-    mvprintw(0, 0, "%s", "Insertion sort visualization using ncurses.");
+    mvprintw(0, 0, "%s", "Insertion sort visualization using curses.");
     mvprintw(1, 0, "%s", "Animates the insertion sort process by underlining the multichar string being compared, and swapping them based on their order.");
     std::vector<std::string> multichars;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 10; i++) {
         mvprintw(3 + i, 0, "%s %d: ", "Enter the name of your classmate", i + 1);
         refresh();
-        char input[100]; // Assuming the input won't exceed 100 characters
+        char input[100];
         getstr(input);
         multichars.push_back(input);
     }
@@ -68,15 +66,16 @@ int main() {
     // Sort the multichars using insertion sort and animate it
     move(3, 0);
     clrtoeol();
-    printw("Sorting multichars (slowed down to 250ms):");
-    animateInsertionSort(4, 0, 250, multichars);
+    int sleep = 300;
+    printw("%s%i%s", "Sorting multichars (slowed down to ", sleep, "ms):");
+    animateInsertionSort(4, 0, sleep, multichars);
     refresh();
     move(3, 0);
     clrtoeol();
     printw("Sorted multichars:");
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 10; i++) {
         mvprintw(4 + i, 0, "%s", multichars[i].c_str());
-    } // Display again just in case
+    } // Display again
 
     getch();
     endwin();

@@ -45,7 +45,6 @@ void animateInsertionSort(int y, int x, int sleepms, std::vector<int>& arr, std:
 
 int main() {
     initscr();
-    curs_set(FALSE);
     WINDOW *win = newwin(3, 31, 10, 10);
 
     // Callback function to print the current state

@@ -1,2 +1,14 @@
-# school
-just for easy access, not necessarily to present them for any reason for now
+# Usage
+
+Requirements:
+- ncurses/pdcurses
+- cmake
+- build tool
+- msys2 (windows-only)
+
+
+```bash
+mkdir bin && cd $_
+cmake ..
+cmake --build .
+```

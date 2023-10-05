@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include <ncurses.h>
+#include <curses.h>
 #include <vector>
 #include <ctime>
 #include <thread>
@@ -11,7 +11,7 @@ using namespace std;
 void animateSelectionSort(vector<int>& arr, int sleep) {
     int n = arr.size();
     int i, j;
-    mvprintw(1, 0, "%s %i %s", "Sorting algorithm... (slowed down to", sleep, "per execution)");
+    mvprintw(1, 0, "%s%i%s", "Sorting algorithm... (slowed down to ", sleep, "ms per execution)");
 
     for (i = 0; i < n - 1; i++) {
         for (j = i + 1; j < n; j++) {
@@ -41,14 +41,14 @@ void animateSelectionSort(vector<int>& arr, int sleep) {
 int main() {
     // init
     initscr();
-    curs_set(FALSE);
     keypad(stdscr, TRUE);
+    curs_set(0);
 
     int lowerBound = 0;
     int upperBound = 100;
     int randomNumber = rand() % (upperBound - lowerBound + 1) + lowerBound;
     int maxTries = 14;
-    int sleep = 200000;
+    int sleep = 200;
     int guess;
     vector<int> guesses;
 
