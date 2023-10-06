@@ -1,25 +1,25 @@
 cmake_minimum_required(VERSION 3.21)
-
 project(cpe211)
 
-set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_COMPILER "clang++")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
+set(ENV{CMAKE_TERM_PROGRAM} "wt.exe")
 
-file(GLOB_RECURSE SRC_FILES ${SRC_DIR}/*.cpp)
+set(PDCURSES_PATH "${CMAKE_SOURCE_DIR}/external/PDCurses")
 
-if (WIN32)
-    find_package(PDCurses REQUIRED)
-    foreach(SRC_FILE ${SRC_FILES})
-        get_filename_component(EXEC_NAME ${SRC_FILE} NAME_WE)
-        add_executable(${EXEC_NAME} ${SRC_FILE})
-        target_link_libraries(${EXEC_NAME} PDCurses::PDCurses)
-        set_target_properties(${EXEC_NAME} PROPERTIES CXX_COMPILER "clang++")
-    endforeach()
-else()
-    find_package(Curses REQUIRED)
-    foreach(SRC_FILE ${SRC_FILES})
-        get_filename_component(EXEC_NAME ${SRC_FILE} NAME_WE)
-        add_executable(${EXEC_NAME} ${SRC_FILE})
-        target_link_libraries(${EXEC_NAME} ${CURSES_LIBRARIES})
-        set_target_properties(${EXEC_NAME} PROPERTIES CXX_COMPILER "clang++")
-    endforeach()
-endif()
+include_directories(${PDCURSES_PATH})
+
+# Collect all source files in the 'src' directory
+file(
+    GLOB SRC_FILES
+    "${CMAKE_SOURCE_DIR}/src/*.cpp"
+)
+
+foreach(SRC_FILE ${SRC_FILES})
+    get_filename_component(EXEC_NAME ${SRC_FILE} NAME_WE)
+    add_executable(${EXEC_NAME} ${SRC_FILE})
+    target_link_directories(${EXEC_NAME} PRIVATE ${PDCURSES_PATH})
+    target_link_libraries(${EXEC_NAME} PRIVATE pdcurses)
+endforeach()

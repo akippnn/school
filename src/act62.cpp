@@ -54,9 +54,11 @@ int main() {
 
     mvprintw(0, 0, "%s", "Insertion sort visualization using curses.");
     mvprintw(1, 0, "%s", "Animates the insertion sort process by underlining the multichar string being compared, and swapping them based on their order.");
+    int num = 10; // Number of classmates
     std::vector<std::string> multichars;
+
     for (int i = 0; i < 10; i++) {
-        mvprintw(3 + i, 0, "%s %d: ", "Enter the name of your classmate", i + 1);
+        mvprintw(3 + i, 0, "%s %d: ", "Enter the name of your classmate", i + 1); // Input text
         refresh();
         char input[100];
         getstr(input);
@@ -78,6 +80,5 @@ int main() {
     } // Display again
 
     getch();
-    endwin();
     return 0;
 }

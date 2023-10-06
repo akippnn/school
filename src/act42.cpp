@@ -22,7 +22,9 @@ namespace Problem1 {
 	int main() {
 		add math;
 		char reply;
-	};
+
+		return 0;
+	}
 }
 
 namespace YearLevelChecker {
@@ -72,6 +74,8 @@ namespace YearLevelChecker {
 		cout << "\tEND OF PROGRAM";
 		cout << "\n\n";
 		system("pause");
+
+		return 0;
 	}
 }
 
@@ -131,7 +135,6 @@ namespace LeapYearChecker {
 }
 
 int main() {
-	// init
 	initscr();
 	noecho();
 	keypad(stdscr, TRUE);
@@ -140,6 +143,7 @@ int main() {
 	start_color();
 	init_pair(2, 2, COLOR_BLACK);
 
+	// Menu
 	WINDOW *win = newwin(7, 55, 5, 10);
 	wbkgd(win, COLOR_PAIR(2));
 	box(win, 0, 0);
@@ -187,7 +191,6 @@ int main() {
 #else
 	system("clear");
 #endif
-	endwin();
 
 	if (selectedMode == 0)
 		return LeapYearChecker::main();

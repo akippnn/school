@@ -1,17 +1,15 @@
 #include <iostream>
-#include <cstdlib>
 #include <curses.h>
-#include <vector>
 #include <ctime>
+#include <chrono>
 #include <thread>
+#include <vector>
 
-using namespace std;
-
-// Function to animate selection sort and update the line
-void animateSelectionSort(vector<int>& arr, int sleep) {
+template <typename T>
+void animateSelectionSort(std::vector<int>& arr, T sleep) {
+    // Animate selection sort and update the line
     int n = arr.size();
     int i, j;
-    mvprintw(1, 0, "%s%i%s", "Sorting algorithm... (slowed down to ", sleep, "ms per execution)");
 
     for (i = 0; i < n - 1; i++) {
         for (j = i + 1; j < n; j++) {
@@ -20,16 +18,16 @@ void animateSelectionSort(vector<int>& arr, int sleep) {
                 if (k == i || k == j) {
                     attron(A_UNDERLINE);
                 }
-                mvprintw(2, k * 5, "%2d ", arr[k]); // Spacing and formatting
+                mvprintw(2, k * 5, "%2d ", arr[k]); // Spacing & formatting
                 attroff(A_UNDERLINE);
             }
 
             refresh();
-            std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
+            std::this_thread::sleep_for(sleep);
 
             if (arr[j] < arr[i]) {
                 mvprintw(3, 0, "%s", "Swapped");
-                swap(arr[i], arr[j]); // Swap items (makes a better visualization + cleaner)
+                std::swap(arr[i], arr[j]); // Swap items (makes a better visualization + cleaner)
             } else {
                 mvprintw(3, 0, "%s", "       ");
             }
@@ -39,7 +37,6 @@ void animateSelectionSort(vector<int>& arr, int sleep) {
 
 
 int main() {
-    // init
     initscr();
     keypad(stdscr, TRUE);
     curs_set(0);
@@ -48,10 +45,12 @@ int main() {
     int upperBound = 100;
     int randomNumber = rand() % (upperBound - lowerBound + 1) + lowerBound;
     int maxTries = 14;
-    int sleep = 200;
-    int guess;
-    vector<int> guesses;
+    auto sleep = std::chrono::milliseconds(200);
 
+    int guess;
+    std::vector<int> guesses;
+
+    // Menu
     noecho();
     mvprintw(0, 0, "%s", "Welcome to the Divide and Conquer Game!");
     mvprintw(2, 4, "%s%i%s", "Easy Mode (Max Tries:", maxTries, ")");
@@ -76,6 +75,7 @@ int main() {
         }
     }
 
+    // Game Start
     echo();
     clear();
     mvprintw(0, 0, "%s", "Welcome to the Divide and Conquer Game!");
@@ -84,6 +84,7 @@ int main() {
 
 
     for (int attempt = 1; attempt <= maxTries; attempt++) {
+        // Game Logic
         printw("\nEnter your guess: ");
         refresh();
         scanw("%d", &guess);
@@ -115,12 +116,14 @@ int main() {
         refresh();
     }
 
+    // Game Over
     int n = guesses.size();
+    mvprintw(1, 0, "%s %i %s", "Sorting algorithm... (slowed down to", sleep, "per execution)");
     animateSelectionSort(guesses, sleep);
-    mvprintw(1, 0, "%s", "Press any key to exit the program.");
+    move(1,0);
+    clrtoeol();
+    printw("%s", "Press any key to exit the program.");
 
     getch();
-    endwin();
     return 0;
 }
-

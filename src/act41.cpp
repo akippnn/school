@@ -1,12 +1,10 @@
 #include <curses.h>
 #include <iostream>
 #include <ctime>
-#include <vector>
-#include <string>
 #include <chrono>
 #include <thread>
-
-using namespace std;
+#include <vector>
+#include <string>
 
 struct Date {
 	int day, month, year;
@@ -20,7 +18,7 @@ struct Student {
 	int age;
 };
 
-vector<int> colorPairs;
+std::vector<int> colorPairs;
 
 void initializeColorPairs() {
 	start_color();
@@ -31,16 +29,22 @@ void initializeColorPairs() {
 }
 
 int calculateAge(const Date& dob) {
-	time_t now = time(0);
-	tm currentDate;
-	localtime_r(&now, &currentDate);
+    std::time_t now = std::time(nullptr);
+    std::tm currentDate;
+    std::tm* currentTm = std::localtime(&now);
+    if (currentTm) {
+        currentDate = *currentTm;
+    } else {
+        // Handle error if std::localtime fails
+        return -1; // Return a sentinel value or handle it accordingly
+    }
 
-	int age = currentDate.tm_year + 1900 - dob.year;
-	if (currentDate.tm_mon < dob.month || (currentDate.tm_mon == dob.month && currentDate.tm_mday < dob.day)) {
-		age--;
-	}
+    int age = currentDate.tm_year + 1900 - dob.year;
+    if (currentDate.tm_mon < dob.month || (currentDate.tm_mon == dob.month && currentDate.tm_mday < dob.day)) {
+        age--;
+    }
 
-	return age;
+    return age;
 }
 
 int main() {
@@ -92,7 +96,7 @@ int main() {
 	wbkgd(win, COLOR_PAIR(5));
 
 	// Animated transition illusion with window resize + text move
-	for (int i = 0; i < 6; i++) {
+	for (int i = 1; i < 6; i++) {
 		wresize(win, (i*3)-1, 50);
 		wclear(win);
 		box(win, 0, 0);
@@ -103,7 +107,7 @@ int main() {
 		mvwprintw(win, 8, i-1, "Program/Course: %s", program);
 		mvwprintw(win, 10,i-1, "Age: %d", age);
 		wrefresh(win);
-		std::this_thread::sleep_for(8ms*i);
+		std::this_thread::sleep_for(std::chrono::milliseconds(8*i));
 	}
 	mvwprintw(win, 12, 3, "Press any key to exit...");
 
@@ -115,13 +119,12 @@ int main() {
 		colorIndex = (colorIndex + 1) % colorPairs.size();
 		wbkgd(win, colorPairs[colorIndex]);
 		wrefresh(win);
-		std::this_thread::sleep_for(250ms);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
 	}
 
 	getch();
 
 	// Make sure to use endwin()
 	delwin(win);
-	endwin();
 	return 0;
 }

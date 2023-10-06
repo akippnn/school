@@ -4,9 +4,8 @@
 #include <thread>
 #include <ctime>
 
-using namespace std;
-
-void animateBubbleSort(vector<string>& arr) {
+template <typename T>
+void animateBubbleSort(std::vector<std::string>& arr, T sleep) {
     int n = arr.size();
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
@@ -24,7 +23,7 @@ void animateBubbleSort(vector<string>& arr) {
             }
 
             refresh();
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            std::this_thread::sleep_for(sleep);
 
 
             if (arr[j] > arr[j + 1]) {
@@ -37,12 +36,15 @@ void animateBubbleSort(vector<string>& arr) {
 int main() {
     initscr();
 
-    // Input five multichars
+    auto sleep = std::chrono::milliseconds(200);
+    int num = 10;
+
+    std::vector<std::string> multichars;
+
     mvprintw(0, 0, "%s", "Bubble sort visualization using curses.");
     mvprintw(1, 0, "%s", "Animates the bubble sort process by underlining the multichar string being compared, and swapping them based on their order.");
-    vector<string> multichars;
-    for (int i = 0; i < 5; i++) {
-        mvprintw(3 + i, 0, "%s %d: ", "Enter the name of your classmate", i + 1);
+    for (int i = 0; i < num; i++) {
+        mvprintw(3 + i, 0, "%s %s %d: ", "Enter the name of your classmate", i + 1); // Input text
         refresh();
         char input[100]; // Assuming the input won't exceed 100 characters
         getstr(input);
@@ -50,14 +52,13 @@ int main() {
     }
 
     mvprintw(9, 0, "Sorting multichars (slowed down to 200ms per execution):");
-    animateBubbleSort(multichars);
+    animateBubbleSort(multichars, sleep);
     refresh();
     mvprintw(9, 0, "Sorted multichars:");
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < num; i++) {
         mvprintw(10 + i, 0, "%s", multichars[i].c_str());
     } // Display again just in case
 
     getch();
-    endwin();
     return 0;
 }

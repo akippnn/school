@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <ncurses.h>
+#include <curses.h>
 #include <thread>
 #include <ctime>
 #include <algorithm>
 #include <functional> // for std::function
+
 
 void printSort(int y, int x, const std::vector<int>& arr, std::function<bool(int, int)> shouldUnderline) {
     int n = arr.size();
@@ -20,7 +21,8 @@ void printSort(int y, int x, const std::vector<int>& arr, std::function<bool(int
     }
 }
 
-void animateInsertionSort(int y, int x, int sleepms, std::vector<int>& arr, std::function<void(int, int)> callback) {
+template <typename T>
+void animateInsertionSort(int y, int x, T sleep, std::vector<int>& arr, std::function<void(int, int)> callback) {
     int n = arr.size();
     for (int i = 1; i < n; i++) {
         int key = arr[i];
@@ -34,7 +36,7 @@ void animateInsertionSort(int y, int x, int sleepms, std::vector<int>& arr, std:
             std::swap(arr[j + 1], arr[j]);
             callback(arr[j + 1], arr[j]); // Call the callback with swapped values
             printSort(y, x, arr, shouldUnderline);
-            std::this_thread::sleep_for(std::chrono::milliseconds(sleepms));
+            std::this_thread::sleep_for(sleep);
             refresh();
             j--;
             i--; // Decrement i to keep track of the key's position
@@ -46,15 +48,17 @@ void animateInsertionSort(int y, int x, int sleepms, std::vector<int>& arr, std:
 int main() {
     initscr();
     WINDOW *win = newwin(3, 31, 10, 10);
+    
+    auto sleep = std::chrono::milliseconds(100);
 
-    // Callback function to print the current state
+    std::vector<int> numbers;
     std::function<void(int, int)> printCallback = [&win](int x, int y) {
+        // Callback function to print the current state
         box(win, 0, 0);
         mvwprintw(win, 1, 1, "Comparing elements: %d and %d", x, y);
         wrefresh(win);
     };
 
-    std::vector<int> numbers;
     srand(time(nullptr));
     for (int i = 0; i < 20; i++) {numbers.push_back(rand() % 100 + 1);}
     mvprintw(0, 0, "20 random numbers from 1 to 100:");
@@ -63,7 +67,7 @@ int main() {
     }
 
     mvprintw(2, 0, "Ascending Order Sort:");
-    animateInsertionSort(3, 0, 100, numbers, printCallback);
+    animateInsertionSort(3, 0, sleep, numbers, printCallback);
 
     delwin(win);
     mvprintw(4, 0, "Descending Order Sort (reversed):");
@@ -73,6 +77,5 @@ int main() {
     }
 
     getch();
-    endwin();
     return 0;
 }

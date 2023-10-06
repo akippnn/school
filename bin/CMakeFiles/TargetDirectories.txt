@@ -1,0 +1,8 @@
+C:/msys64/home/rudmar/school/bin/CMakeFiles/act41.dir
+C:/msys64/home/rudmar/school/bin/CMakeFiles/act42.dir
+C:/msys64/home/rudmar/school/bin/CMakeFiles/act51.dir
+C:/msys64/home/rudmar/school/bin/CMakeFiles/act52.dir
+C:/msys64/home/rudmar/school/bin/CMakeFiles/act61.dir
+C:/msys64/home/rudmar/school/bin/CMakeFiles/act62.dir
+C:/msys64/home/rudmar/school/bin/CMakeFiles/edit_cache.dir
+C:/msys64/home/rudmar/school/bin/CMakeFiles/rebuild_cache.dir
