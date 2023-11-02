@@ -1,0 +1,1 @@
+/nix/store/lcf37pgp3rgww67v9x2990hbfwx96c1w-gcc-wrapper-12.2.0/bin/g++ CMakeFiles/act21.dir/src/act21.cpp.o -o act21  /nix/store/i6y3vfw18aygsivl29fk7y0pb153j571-ncurses-6.4/lib/libncurses.so /nix/store/i6y3vfw18aygsivl29fk7y0pb153j571-ncurses-6.4/lib/libform.so 

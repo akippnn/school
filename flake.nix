@@ -24,7 +24,7 @@
 
 				packages = with pkgs; [
 					# Development Tools
-					llvmPackages_11.clang
+					llvmPackages_latest.clang
 					cmake
 					cmakeCurses
 					ncurses

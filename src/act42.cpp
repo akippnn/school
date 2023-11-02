@@ -71,7 +71,6 @@ namespace YearLevelChecker {
 		cout << "\n\n";
 		cout << "\tEND OF PROGRAM";
 		cout << "\n\n";
-		system("pause");
 	}
 }
 
@@ -189,10 +188,17 @@ int main() {
 #endif
 	endwin();
 
-	if (selectedMode == 0)
+	std::cout << selectedMode;
+	if (selectedMode == 0) {
+		std::cout << "what";
 		return LeapYearChecker::main();
-	else if (selectedMode == 1)
+	}
+	else if (selectedMode == 1) {
+		std::cout << "whet";
 		return YearLevelChecker::main();
-	else if (selectedMode == 2)
+	}
+	else if (selectedMode == 2) {
+		std::cout << "whit";
 		return Problem1::main();
+	}
 }
