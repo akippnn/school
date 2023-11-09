@@ -1,32 +1,29 @@
-#include <iostream>
-#include <vector>
+#include <curses.h>
 
 using std::cout;
 using std::cin;
-using std::vector;
 
 int main() {
-  vector<int> legal;
-  vector<int> underage;
-  int input;
+  initscr();
+  curs_set(0);
 
-  cout << "Enter the age of 10 persons:\n";
+  int input[10];
+
+  mvprintw(0, 0, "Enter the age of 10 people:");
   for (int i = 0; i < 10; i++) {
-    cout << " " << i+1 << ". ";
-    cin >> input;
-    if (input >= 18) {
-      legal.push_back(input);
-    } else {
-      underage.push_back(input);
-    }
+    mvprintw(i+1, 2, "%d%s", i+1, ". ");
+    refresh();
+    scanw("%d", &input[i])
   }
 
-  cout << "Students that are below 18 years old are:\n";
-  for (int age : legal) {
-    cout << age << " ";
+  mvprintw(0, 0, "Given your input, the following are:");
+  for (int i = 0; i < 10; i++) {
+    if (input[i] >= 18)
+      mvprintw(i+1, 10, "18+")
+    else
+      mvprintw(i+1, 10, "under 18")
   }
-  cout << "\nStudents that are of legal age are:\n";
-  for (int age : underage) {
-    cout << age << " ";
-  }
+  refresh();
+
+  return 0;
 };
