@@ -3,7 +3,6 @@
 int main()
 {
   initscr();
-  curs_set(0);
 
   int input[10];
 
