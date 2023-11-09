@@ -1,10 +1,8 @@
-# Usage
+## Requirements
 
-Requirements:
-- ncurses/pdcurses
+- ncurses
 - cmake
 - build tool
-- msys2 (windows-only)
 
 
 ```bash
@@ -12,3 +10,4 @@ mkdir bin && cd $_
 cmake ..
 cmake --build .
 ```
+
