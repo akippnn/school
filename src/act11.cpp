@@ -1,7 +1,7 @@
 #include <iostream>
 
-using std::cout;
 using std::cin;
+using std::cout;
 
 const int MAX_NUMBERS = 30;
 
@@ -13,7 +13,8 @@ int main()
   cout << "How many natural numbers to enter (max " << MAX_NUMBERS << "):";
   cin >> num_limit;
   while (num_limit < 1 || num_limit > 30) {
-    cout << std::endl << "Try again: ";
+    cout << std::endl
+         << "Try again: ";
     cin >> num_limit;
   }
 
