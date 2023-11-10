@@ -2,15 +2,16 @@ cmake_minimum_required(VERSION 3.21)
 
 project(cpe211)
 
-set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+set(CMAKE_CXX_STANDARD 20)
 
-file(GLOB_RECURSE SRC_FILES ${SRC_DIR}/*.cpp)
+set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")
+
+file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS "${SRC_DIR}/*.cpp")
 
 find_package(Curses REQUIRED)
+
 foreach(SRC_FILE ${SRC_FILES})
-    get_filename_component(EXEC_NAME ${SRC_FILE} NAME_WE)
-    add_executable(${EXEC_NAME} ${SRC_FILE})
-    target_link_libraries(${EXEC_NAME} ${CURSES_LIBRARIES})
-    set_target_properties(${EXEC_NAME} PROPERTIES CXX_COMPILER "clang++")
+  get_filename_component(EXEC_NAME ${SRC_FILE} NAME_WE)
+  add_executable(${EXEC_NAME} ${SRC_FILE})
+  target_link_libraries(${EXEC_NAME} ${CURSES_LIBRARIES})
 endforeach()
-endif()

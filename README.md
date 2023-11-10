@@ -12,6 +12,6 @@ For Windows, please see the `pdcurses` branch.
 
 ```bash
 mkdir bin && cd $_
-cmake ..
+cmake -DCMAKE_CXX_COMPILER=clang++ ..
 cmake --build .
 ```
