@@ -22,7 +22,10 @@ int main()
     else
       mvprintw(i + 1, 10, "- under %i", AGE_LEGAL);
   }
-  refresh();
 
+  mvprintw(5 + MAX_INPUT, 0, "Press any key to close...");
+  refresh();
+  getch();
+  endwin();
   return 0;
 };

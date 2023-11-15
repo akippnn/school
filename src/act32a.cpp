@@ -4,7 +4,8 @@ using std::cout, std::endl, std::string;
 string yellow = "\033[30;103m";
 string reset = "\033[0m";
 
-int arraysize(auto array[]) {
+int arraysize(auto array[])
+{
   return *(&array + 1) - array;
   /*
     How this works is that when referencing array without accessing its' elements, we can get the pointer of the 0th element of the array and the pointer of the whole array when using the & operator. Then we can leverage the pointer subtraction (the '-' operator is used) to find the distance between the two elements.
@@ -13,7 +14,8 @@ int arraysize(auto array[]) {
   */
 }
 
-int main() {
+int main()
+{
   string rates[] = {"6.25", "6.50", "6.8", "7.2", "7.35", "7.5", "7.65", "7.8", "8.2", "8.4", "8.6", "8.8", "9.0"};
   int elements = *(&rates + 1) - rates;
   cout << "Displaying items stored in the following memory addresses..." << endl;

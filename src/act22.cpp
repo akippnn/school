@@ -1,8 +1,6 @@
 #include <iostream>
 #include <ncurses.h>
 
-int printTable(int num[])
-
 int main()
 {
   int num[5][5] = {
@@ -32,13 +30,17 @@ int main()
   row = int(input) - 48;
   mvprintw(10, 0, "Row [%i]", row);
 
-  mvprintw(1)
+  mvprintw(10, 10, "Column [ Type number... ]");
   refresh();
   input = getch();
   column = int(input) - 48;
-  cout << "\b" << column << "] ";
+  mvprintw(10, 10, "Column [%i]", column);
 
-  cout << "\nThe value in the field you selected (" << row << ", " << column << ") is: " << num[column - 1][row - 1];
+  mvprintw(10, 25, "Selected [%i]", num[column - 1][row - 1]);
 
+  mvprintw(15, 0, "Press any key to close...")
+  refresh();
+  getch();
+  endwin();
   return 0;
 };

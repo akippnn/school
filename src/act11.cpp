@@ -1,5 +1,6 @@
 #include <iostream>
 
+// "using" directive demonstration
 using std::cin;
 using std::cout;
 
@@ -10,11 +11,11 @@ int main()
   int num_limit;
   int numbers[MAX_NUMBERS];
 
-  cout << "How many natural numbers to enter (max " << MAX_NUMBERS << "):";
+  cout << "How many natural numbers to enter (max "
+    << MAX_NUMBERS << "):";
   cin >> num_limit;
   while (num_limit < 1 || num_limit > 30) {
-    cout << std::endl
-         << "Try again: ";
+    cout << std::endl << "Try again: ";
     cin >> num_limit;
   }
 
