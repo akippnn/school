@@ -8,10 +8,12 @@ set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")
 
 file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS "${SRC_DIR}/*.cpp")
 
+add_subdirectory(vendor/fmt)
+find_package(fmt)
 find_package(Curses REQUIRED)
 
 foreach(SRC_FILE ${SRC_FILES})
   get_filename_component(EXEC_NAME ${SRC_FILE} NAME_WE)
   add_executable(${EXEC_NAME} ${SRC_FILE})
-  target_link_libraries(${EXEC_NAME} ${CURSES_LIBRARIES})
+  target_link_libraries(${EXEC_NAME} ${CURSES_LIBRARIES} fmt::fmt)
 endforeach()

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <format>
+#include <fmt/core.h>
 
 using std::cout;
 using std::cin;
@@ -16,9 +16,9 @@ int main() {
     cout << " " << i+1 << ". ";
     cin >> input;
     if (input >= 18) {
-      legal.push_back(std::format("{}. {}", i, input);
+      legal.push_back(fmt::format("{}. {}", i, input);
     } else {
-      underage.push_back(std::format("{}. {}", i, input);
+      underage.push_back(fmt::format("{}. {}", i, input);
     }
   }
 
