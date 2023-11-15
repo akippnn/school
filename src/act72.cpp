@@ -18,13 +18,13 @@ int main() {
     }
   }
 
-  std::cout << "Students that are below 18 years old are:\n";
+  std::cout << std::endl << "Students that are below 18 years old are:\n";
   for (std::string age : underage) {
-    std::cout << age << " " << std::endl;
+    std::cout << " " << age << " " << std::endl;
   }
   std::cout << "\nStudents that are of legal age are:\n";
   for (std::string age : legal) {
-    std::cout << age << " " << std::endl;
+    std::cout << " " << age << " " << std::endl;
   }
 
   return 0;
