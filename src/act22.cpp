@@ -29,6 +29,17 @@ void printRow(int y, bool selectedRow, const int* selectedItem)
   attroff(A_STANDOUT);
 }
 
+void clr_mvprintw(int y, int x, const char *fmt, ...) {
+  va_list ap;
+  va_start(ap, fmt);
+
+  move(y, x);
+  clrtoeol();
+  printw(fmt, ap);
+
+  va_end(ap);
+}
+
 int main()
 {
   int row, column;
@@ -42,28 +53,20 @@ int main()
   refresh();
 
   mvprintw(10, 0, "Row [ Type number... ]");
-  refresh();
-  input = getch();
-  row = int(input) - 48;
-  move(10, 0);
-  clrtoeol();
-  printw("Row [%i]", row);
-  printRow(row - 1, true, nullptr);
+  for (;;) {
+    refresh();
+    input = getch();
+    row = int(input) - 48;
+    clr_mvprintw(10, 0, "Row [%i]", row);
+    printRow(row - 1, true, nullptr);
 
-  mvprintw(10, 10, "Column [ Type number... ]");
-  refresh();
-  input = getch();
-  column = int(input) - 48;
-  move(10, 10);
-  clrtoeol();
-  printw("Column [%i]", column);
-  printRow(row - 1, false, &NUM[row - 1][column - 1]);
+    mvprintw(10, 10, "Column [ Type number... ]");
+    refresh();
+    input = getch();
+    column = int(input) - 48;
+    clr_mvprintw(10, 10, "Column [%i]", column);
+    printRow(row - 1, false, &NUM[row - 1][column - 1]);
 
-  mvprintw(10, 23, "Selected [%i]", NUM[row - 1][column - 1]);
-
-  mvprintw(15, 0, "Press any key to close...");
-  refresh();
-  getch();
-  endwin();
-  return 0;
+    mvprintw(10, 23, "Selected [%i]", NUM[row - 1][column - 1]);
+  }
 };
