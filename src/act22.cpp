@@ -17,7 +17,7 @@ void printRow(int y, bool selectedRow, const int* selectedItem)
   if (selectedRow) {
     attron(A_STANDOUT);
   }
-  for (int x = 1; x <= 5; x++) {
+  for (int x = 1; x <= COLUMNS; x++) {
     if (&NUM[y][x - 1] == selectedItem) {
       attron(A_STANDOUT);
       mvprintw(y + 2, 5 * x, "%i", NUM[y][x - 1]);
@@ -36,7 +36,7 @@ int main()
 
   initscr();
   printw("Numbers in the table:");
-  for (int y = 0; y < 5; y++) {
+  for (int y = 0; y < ROWS; y++) {
     printRow(y, false, nullptr);
   };
   refresh();
