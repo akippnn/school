@@ -45,7 +45,9 @@ int main()
   refresh();
   for (;;) {
     input = getch();
-    printRow(row - 1, false, &NUM[row - 1][column - 1]);
+    if (row) {
+      printRow(row - 1, false, nullptr); 
+    };
     row = int(input) - 48;
     move(10, 0);
     clrtoeol();
