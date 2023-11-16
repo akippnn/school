@@ -15,7 +15,6 @@ int main()
 
   initscr();
   printw("These are the numbers in the table:");
-  mvprintw(y+2, 0, "%i", y);
   for (int y = 0; y < 5; y++) {
     mvprintw(y+2, 0, "%i", y);
     for (int x = 0; x < 5; x++) {
@@ -38,7 +37,7 @@ int main()
 
   mvprintw(10, 25, "Selected [%i]", num[column - 1][row - 1]);
 
-  mvprintw(15, 0, "Press any key to close...")
+  mvprintw(15, 0, "Press any key to close...");
   refresh();
   getch();
   endwin();
