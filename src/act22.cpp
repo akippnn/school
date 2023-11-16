@@ -18,24 +18,28 @@ int main()
   for (int y = 0; y < 5; y++) {
     mvprintw(y+2, 0, "%i", y);
     for (int x = 0; x < 5; x++) {
-      mvprintw(y+2, 2*x, "%i", num[x][y]);
+      mvprintw(y+2, 5*x, "%i", num[x][y]);
     };
   };
   refresh();
 
-  mvprintw(10, 0, "Row [ Type number... ]");
+  move(10, 0);
+  printw("Row [ Type number... ]");
   refresh();
   input = getch();
   row = int(input) - 48;
-  mvprintw(10, 0, "Row [%i]", row);
+  clrtoeol();
+  printw("Row [%i]", row);
 
-  mvprintw(10, 10, "Column [ Type number... ]");
+  move(11, 0);
+  printw("Column [ Type number... ]");
   refresh();
   input = getch();
   column = int(input) - 48;
-  mvprintw(10, 10, "Column [%i]", column);
+  clrtoeol();
+  printw("Column [%i]", column);
 
-  mvprintw(10, 25, "Selected [%i]", num[column - 1][row - 1]);
+  mvprintw(10, 23, "Selected [%i]", num[column - 1][row - 1]);
 
   mvprintw(15, 0, "Press any key to close...");
   refresh();
