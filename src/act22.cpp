@@ -45,6 +45,7 @@ int main()
   refresh();
   for (;;) {
     input = getch();
+    printRow(row - 1, false, &NUM[row - 1][column - 1]);
     row = int(input) - 48;
     move(10, 0);
     clrtoeol();
@@ -62,6 +63,5 @@ int main()
 
     mvprintw(10, 23, "Selected [%i]", NUM[row - 1][column - 1]);
     refresh();
-    printRow(row - 1, false, nullptr);
   }
 };
