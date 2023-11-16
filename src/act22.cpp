@@ -13,12 +13,12 @@ const int NUM[5][5] = {
 
 void printRow(int y, bool selectedRow, const int* selectedItem)
 {
-  mvprintw(y + 2, 0, "%i.", y);
+  mvprintw(y + 2, 0, "%i.", y + 1);
   if (selectedRow) {
     attron(A_STANDOUT);
   }
   for (int x = 1; x <= 5; x++) {
-    if (&NUM[y][x] == selectedItem) {
+    if (&NUM[y][x - 1] == selectedItem) {
       attron(A_STANDOUT);
       mvprintw(y + 2, 5 * x, "%i", NUM[y][x - 1]);
       attroff(A_STANDOUT);
@@ -35,7 +35,7 @@ int main()
   char input;
 
   initscr();
-  printw("These are the numbers in the table:");
+  printw("Numbers in the table:");
   for (int y = 0; y < 5; y++) {
     printRow(y, false, nullptr);
   };
@@ -47,8 +47,8 @@ int main()
   row = int(input) - 48;
   move(10, 0);
   clrtoeol();
-  printRow(row - 1, true, nullptr);
   printw("Row [%i]", row);
+  printRow(row - 1, true, nullptr);
 
   mvprintw(10, 10, "Column [ Type number... ]");
   refresh();
@@ -56,8 +56,8 @@ int main()
   column = int(input) - 48;
   move(10, 10);
   clrtoeol();
-  printRow(row - 1, false, &NUM[row - 1][column - 1]);
   printw("Column [%i]", column);
+  printRow(row - 1, false, &NUM[row - 1][column - 1]);
 
   mvprintw(10, 23, "Selected [%i]", NUM[row - 1][column - 1]);
 
