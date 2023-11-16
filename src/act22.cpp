@@ -11,7 +11,7 @@ const int NUM[5][5] = {
   23,   19,   11,   34,   54
 };
 
-void printRow(int y, bool selectedRow, int* selectedItem)
+void printRow(int y, bool selectedRow, const int* selectedItem)
 {
   mvprintw(y + 2, 0, "%i.", y);
   if (selectedRow) {
