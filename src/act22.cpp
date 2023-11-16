@@ -45,7 +45,7 @@ int main()
   refresh();
   input = getch();
   row = int(input) - 48;
-  move(10, 0)
+  move(10, 0);
   clrtoeol();
   printRow(row - 1, true, nullptr);
   printw("Row [%i]", row);
