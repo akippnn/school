@@ -26,9 +26,8 @@ cmake --build .
 - [x] act11.cpp
 - [x] act12.cpp
 - [x] act21.cpp
-- [ ] act22.cpp
-  - Needs extra coloring
-- [ ] act31.cpp
+- [x] act22.cpp
+- [x] act31.cpp
 - [ ] act32a.cpp
 - [ ] act32b.cpp
 - [ ] act41.cpp
