@@ -1,4 +1,4 @@
-#include <curses.h>
+#include <ncurses.h>
 
 const int MAX_INPUT = 10;
 const int AGE_LEGAL = 18;
