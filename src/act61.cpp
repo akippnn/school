@@ -28,7 +28,7 @@ void animateInsertionSort(int y, int x, int sleepms, std::vector<int> &arr, std:
     int key = arr[i];
     int j = i - 1;
 
-    std::function<bool(int)> shouldUnderline = [&i, &j](int k) {
+    auto shouldUnderline = [&i, &j](int k) {
       return k == i || k == j;
     };
 
