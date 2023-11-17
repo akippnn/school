@@ -36,6 +36,6 @@ cmake --build .
 - [ ] act52.cpp
 - [ ] act61.cpp
 - [ ] act62.cpp
-- [ ] act71.cpp
-- [ ] act72.cpp
+- [x] act71.cpp
+- [x] act72.cpp
 - [ ] act81.cpp

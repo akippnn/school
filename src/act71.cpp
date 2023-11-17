@@ -1,32 +1,36 @@
 #include <iostream>
 #include <vector>
 
-using std::cin;
-using std::cout;
+const int MAX_NUMBERS = 30;
 
 int main()
 {
   int input;
-  int num_limit;
+  int limit;
   std::vector<int> numbers;
 
-  cout << "How many natural numbers to enter: ";
+  std::cout << "How many natural numbers to enter? ";
   do {
-    cout << "Only 30 natural numbers are allowed.\n";
-    cin >> num_limit;
-  } while (num_limit > 30);
+    std::cout << "Only " << MAX_NUMBERS
+      << " natural numbers are allowed: ";
+    std::cin >> limit;
+  } while (limit > MAX_NUMBERS);
 
-  cout << "Enter your numbers (press enter to add new number): \n";
-  for (int i = 0; i <= num_limit; i++) {
-    cout << i << ". ";
-    cin >> numbers[i];
+  std::cout
+    << "Enter your numbers (press enter to add new number):"
+    << std::endl;
+  for (int i = 0; i <= limit; i++) {
+    std::cout << i << ". ";
+    std::cin >> numbers[i];
   };
 
-  cout << "Your numbers in reverse: " << std::endl;
-  for (int i = num_limit; i > 0; i--) {
-    cout << i << ". ";
-    cout << numbers[i] << std::endl;
+  std::cout << "Your numbers in reverse: " << std::endl;
+  for (int i = limit; i > 0; i--) {
+    std::cout
+      << i << ". "
+      << numbers[i]
+      << std::endl;
   }
-  cout << "\b\b \n";
+  std::cout << "\b\b \n";
   return 0;
 }
