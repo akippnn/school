@@ -6,9 +6,10 @@
 - build environment (`base-devel` for Arch Linux)
 - `cmake`
 - `clang++`
-- `nix` (optional)
 
 For Windows, please see the `pdcurses` branch.
+
+For [Nix](https://en.wikipedia.org/wiki/Nix_(package_manager)), you may simply run `nix develop` in your local copy of this repository and proceed.
 
 ## Usage
 
