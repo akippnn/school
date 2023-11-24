@@ -1,5 +1,5 @@
 {
-	description = "CPE 211 activities";
+	description = "school activities";
 
 	inputs = {
 		nixpkgs = {
